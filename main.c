@@ -6,9 +6,9 @@
 #include <sys/stat.h>
 #include "elf.h"
 
-char *read_file(int fd)
+void *read_file(int fd)
 {
-    char *res;
+    void *res;
     struct stat file_info;
 
     if (fstat(fd, &file_info))
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
         perror("open :");
         return -1;
     }
-    char *res = read_file(fd);
-    printf("%s\n", res);
+    Elf64_Ehdr *res = read_file(fd);
+    printf("%lu\n", res->e_entry);
     return 0;
 }

@@ -2,15 +2,15 @@ NAME = ft_nm
 
 SRC_O = main.o 
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror  -fsanitize=leak -g
 
 all : $(NAME)
 
 $(NAME) : $(SRC_O)
-	cc $(CFLAGS) $(SRC_O) -o $(NAME)
+	gcc $(CFLAGS) $(SRC_O) -o $(NAME)
 
 %.o : %.c
-	cc -c $(CFLAGS) $< -o $@
+	gcc -c $(CFLAGS) $< -o $@
 
 clean : 
 	rm -rf $(SRC_O)
